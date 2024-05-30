@@ -3,47 +3,8 @@ spring:
     name: microservice-student
   config:
     import: optional:configserver:http://localhost:8888
-    #By default, SQL database initialization is only performed when using an embedded in-memory database.
-    #To always initialize an SQL database, irrespective of its type, set spring.sql.init.mode to always.
-  sql:
-    init:
-      platform: mysql
-      mode: always
-
-
-  datasource:
-    url: jdbc:mysql://localhost:3307/students
-    username: root
-    password: admin
-    driver-class-name: com.mysql.cj.jdbc.Driver
-
-  jpa:
-    hibernate:
-      ddl-auto: create-drop
-    defer-datasource-initialization: true
-    database: mysql
-
-server:
-  port: ${PORT:0}  # 0 means random port
 
 
 
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:8761/eureka/
-    enabled: true
-  instance:
-    instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
-    hostname: localhost
-
-logging:
-  level:
-    sql: debug
 
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"

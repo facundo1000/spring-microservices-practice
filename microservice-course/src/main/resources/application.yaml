@@ -1,52 +1,7 @@
 spring:
   application:
     name: microservice-course
-    #By default, SQL database initialization is only performed when using an embedded in-memory database.
-    #To always initialize an SQL database, irrespective of its type, set spring.sql.init.mode to always.
-  sql:
-    init:
-      platform: postgres
-      mode: always
-
-  datasource:
-    url: jdbc:postgresql://localhost:5433/courses
-    username: postgres
-    password: admin
-    driver-class-name: org.postgresql.Driver
-
-  jpa:
-    hibernate:
-      ddl-auto: create-drop
-    defer-datasource-initialization: true
-    database: postgresql
-
-
   config:
     import: optional:configserver:http://localhost:8888
 
-server:
-    port: ${PORT:0}
 
-
-# The following snippet is the same for both microservices
-# The only difference is the application name
-# The application name is used to register the microservice with Eureka
-# The application name is also used to fetch the configuration from the Config Server
-eureka:
-    client:
-      serviceUrl:
-          defaultZone: http://${eureka.instance.hostname}:8761/eureka/
-      enabled: true
-    instance:
-      instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
-      hostname: localhost
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-
-logging:
-  level:
-    sql: debug
