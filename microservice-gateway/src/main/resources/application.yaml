@@ -1,14 +1,34 @@
 spring:
     application:
         name: microservice-gateway
+    config:
+      import: optional:configserver:http://localhost:8888
+
     cloud:
         gateway:
-            routes:
-                - id: microservice-a
-                uri: lb://microservice-a
-                predicates:
-                - Path=/microservice-a/**
-                - id: microservice-b
-                uri: lb://microservice-b
-                predicates:
-                - Path=/microservice-b/**
+            discovery:
+                locator:
+                    enabled: true
+            mvc:
+              routes:
+                - id: microservice-course # id is a unique identifier for the route
+                  uri: lb://microservice-course # uri is the target service
+                  predicates:
+                  - Path=/api/courses/**
+
+                - id: microservice-student
+                  uri: lb://microservice-student
+                  predicates:
+                    - Path=/api/students/**
+
+
+
+
+server:
+    port: 8081
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
