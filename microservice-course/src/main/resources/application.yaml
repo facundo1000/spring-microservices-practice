@@ -1,17 +1,22 @@
 spring:
   application:
     name: microservice-course
-
+    #By default, SQL database initialization is only performed when using an embedded in-memory database.
+    #To always initialize an SQL database, irrespective of its type, set spring.sql.init.mode to always.
+  sql:
+    init:
+      platform: postgres
+      mode: always
 
   datasource:
-    url: jdbc:postgresql://localhost:5433/
+    url: jdbc:postgresql://localhost:5433/courses
     username: postgres
     password: admin
     driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     defer-datasource-initialization: true
     database: postgresql
 
@@ -41,3 +46,7 @@ management:
     web:
       exposure:
         include: "*"
+
+logging:
+  level:
+    sql: debug
