@@ -11,10 +11,15 @@
     <groupId>dev.fmartinez</groupId>
     <artifactId>spring-microservices-practice</artifactId>
     <version>1.0-SNAPSHOT</version>
+
     <packaging>pom</packaging>
 
     <name>spring-microservices-practice</name>
     <description>Spring Microservices Practice</description>
+
+    <modules>
+        <module>microservice-gateway</module>
+    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
