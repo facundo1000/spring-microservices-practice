@@ -32,4 +32,9 @@ public class StudentController {
         service.save(student);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+    @GetMapping("/search-by-course/{id}")
+    public ResponseEntity<?> findStudentsByIdCourse(@PathVariable Long id) {
+        return new ResponseEntity<>(service.findByCourseId(id), HttpStatus.OK);
+    }
 }

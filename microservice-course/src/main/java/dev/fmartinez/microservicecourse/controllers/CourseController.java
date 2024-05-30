@@ -31,4 +31,9 @@ public class CourseController {
         courseService.save(course);
         return new ResponseEntity<>(course, HttpStatus.CREATED);
     }
+
+    @GetMapping("/serach-students/{id}")
+    public ResponseEntity<?> findStudentsByIdCourse(@PathVariable Long id) {
+        return ResponseEntity.ok(courseService.findStudentsByIdCourse(id));
+    }
 }
