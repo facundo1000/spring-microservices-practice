@@ -5,11 +5,11 @@ spring:
   profiles:
     active: native
 
-    cloud:
-      config:
-        server:
-          native:
-            search-locations: classpath:/configurations
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/configurations
 
 
 server:

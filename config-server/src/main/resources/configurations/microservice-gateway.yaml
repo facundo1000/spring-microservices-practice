@@ -1,3 +1,7 @@
+#TODO: gateway configuration not working
+spring:
+  application:
+    name: microservice-gateway
 cloud:
   gateway:
     discovery:
@@ -17,10 +21,6 @@ cloud:
 
 server:
   port: 8081
-
-eureka:
-  client:
-    register-with-eureka: false # Gateway doesn't register itself with Eureka
 
 management:
   endpoints:
