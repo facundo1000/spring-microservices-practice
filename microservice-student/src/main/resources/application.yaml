@@ -6,7 +6,7 @@ spring:
 
 
   datasource:
-    url: jdbc:mysql://localhost:3307
+    url: jdbc:mysql://localhost:3307/
     username: root
     password: admin
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -20,14 +20,24 @@ spring:
 server:
   port: ${PORT:0}  # 0 means random port
 
+
+
 eureka:
   client:
     serviceUrl:
-      defaultZone: https://${eureka.instance.hostname}:8761/eureka/
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka/
+    enabled: true
   instance:
-    instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+    instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
     hostname: localhost
 
 logging:
   level:
     sql: debug
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

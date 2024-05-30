@@ -29,9 +29,15 @@ server:
 # The application name is also used to fetch the configuration from the Config Server
 eureka:
     client:
-        serviceUrl:
-          defaultZone: https://${eureka.instance.hostname}:8761/eureka/
+      serviceUrl:
+          defaultZone: http://${eureka.instance.hostname}:8761/eureka/
+      enabled: true
     instance:
-      instanceId: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+      instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
       hostname: localhost
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
